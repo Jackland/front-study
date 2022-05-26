@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<!-- vue2 开发版本，包好完整的错误和信息 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<body>
+		<div id="app-1">
+			{{name}}
+		</div>
+
+		<div id="app-2">
+			<p v-if='seen'>现在看见我了</p>
+		</div>
+
+		<div id="app-3">
+			<ul>
+				<li v-for="(item,index) in names">
+					{{item.val}}
+				</li>
+			</ul>
+		</div>
+		
+		<div id="app-4">
+			<span v-bind:title='message'>
+				鼠标停留绑定显示提示信息
+			</span>	
+			
+		</div>
+		
+		
+		<div id="app-5">
+			<p>{{message}}</p>
+			<button v-on:click="reverMessage">{{button}}</button>
+		</div>
+		
+		
+		<div id="app-6">
+			<ol>
+				<todo-item v-for="item in list" v-bind:todo='item' v-bind:key='item.id'>
+					
+				</todo-item>
+			</ol>
+			
+		</div>
+
+	</body>
+	<script>
+		var app1 = new Vue({
+			el: '#app-1',
+			data: {
+				name: 'hello vue'
+			}
+		})
+
+		// 显示if
+		var app2 = new Vue({
+			'el': '#app-2',
+			data: {
+				'seen': true
+			}
+		})
+
+		//列表循环
+		const app3 = new Vue({
+			el: '#app-3',
+			data: {
+				'names': [{
+						val: 'jay'
+					},
+					{
+						val: 'mao'
+					},
+					{
+						val: 'tom'
+					}
+				]
+			}
+		})
+		
+		// 绑定信息
+		
+		const app4 =new Vue({
+			el:"#app-4",
+			data:{
+				message:'页面修改时间为'+ new Date().toLocaleDateString()
+			}
+		})
+		
+		//绑定事件反转消息
+		const app5 = new Vue({
+			el:'#app-5',
+			data:{
+				message:'反转消息内容',
+				button:'点击'
+			},
+			methods: {
+				reverMessage:function() {
+					this.message = this.message.split('').reverse().join('')
+				}
+			},
+		})
+		
+		// 绑定内容
+		Vue.component('todo-item', {
+		  props: ['todo'],
+		  template: '<li>{{ todo.text }}</li>'
+		})
+		
+		var app7 = new Vue({
+		  el: '#app-6',
+		  data: {
+		    list: [
+		      { id: 0, text: '蔬菜' },
+		      { id: 1, text: '奶酪' },
+		      { id: 2, text: '随便其它什么人吃的东西' }
+		    ]
+		  }
+		})
+		
+	</script>
+
+</html>
