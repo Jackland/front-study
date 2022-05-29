@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	
+	<body>
+		
+		<!--
+		 vue绑定数据的方式
+		 
+		 单向绑定: 数据指南从data 流向页面
+		 双向绑定: 数据指南从data 流向页面 页面还能将数据流向data 一般用于表单元素上 select input 
+		 
+		 -->
+		
+		<div id="root">
+			<!-- 普通写法 -->
+			单项绑定 <input type="" name="" id="" v-bind:value="value" /><br>
+			双向绑定 <input type="" name="" id="" v-model:value="val" /><br>
+			
+			<!-- 简写 -->
+			
+			单项绑定 <input type="" name="" id="" :value="value" /><br>
+			双向绑定 <input type="" name="" id="" v-model="val" />
+			
+			 <!-- v-model  只能绑定表单类输入元素（不能） -->
+			<!-- <h1 v-model:x="val"></h1> -->
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+	new Vue({
+		el:'#root',
+		data:{
+			value:'baidu',
+			val:'google'
+		}
+	})
+		
+	</script>
+</html>

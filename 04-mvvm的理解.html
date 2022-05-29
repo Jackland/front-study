@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="./js/vue.js"></script>
+	
+	<body>
+		
+		<!--
+		mvvm 模型：
+		m 模型 data 的数据
+		v 视图：模板代码
+		vm 视图模型 相当 vue
+		
+		
+		data 最后的属性会出现 vm 上
+		vm 的属性 在vue 模板可以直接使用
+		 -->
+		
+		<div id="root">
+			<p>{{val}}</p>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		
+
+// 普通绑定方式
+	const vm = new  Vue({
+		el:'#root',
+		data:{
+			value:'baidu',
+			val:'google'
+		}
+	})
+
+console.log(Vue)
+
+		
+	</script>
+</html>

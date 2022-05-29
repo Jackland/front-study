@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="./js/vue.js"></script>
+	
+	<body>
+		
+		<!--
+		 vue 管理的函数 不要写箭头函数 写了箭头函数就不在是vue 实列了
+		 
+		 
+		 data: 1对象式（很少用）2；函数式（后期一直用）
+		 el: 1.new vue(很少用) 2;挂载（后期经常用）
+		 -->
+		
+		<div id="root">
+			<p>{{val}}</p>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		
+
+// 普通绑定方式
+	// new Vue({
+	// 	el:'#root',
+	// 	data:{
+	// 		value:'baidu',
+	// 		val:'google'
+	// 	}
+	// })
+	
+	
+// 挂载的方式
+const v = new Vue({
+		// el:'#root',
+		// data:{
+		// 	value:'baidu',
+		// 	val:'google'
+		// }
+		
+		// 函数式返回数据
+		// data:function(){
+		// 	return {
+		// 		val:'2345'
+		// 	}
+		// }
+		//简写的函数返回 后期经常这样写
+		data(){
+			return{
+				val:'花无缺'
+			}
+		}
+	})
+
+v.$mount('#root')
+
+
+		
+	</script>
+</html>

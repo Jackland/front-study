@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="./js/vue.js"></script>
+	
+	<body>
+
+		<div id="root">
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		
+		let numbuer =19
+		let person = {
+			name:'jack',
+			sex:'man'
+		}
+		
+		
+		Object.defineProperty(person,'age',{
+			// value:18,
+			// enumberable:false,// 控制属性是否可以被枚举
+			// writable:true,// 控制属性是否可以被修改
+			// configurable:false ,// 控制属性是否可以被删除
+			
+			
+			// 获取属性值的时候 先被执行
+			get(){
+				console.log('获取属性先被执行')
+			},
+			
+			// 设置属性的时候优先被执行
+			set(value){
+				console.log('设置属性先被执行'+value)
+				numbuer = value
+			
+			}
+		})
+		
+	</script>
+</html>
