@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="./js/vue.js"></script>
+
+	</head>
+	<!-- 
+	 1 vue常用按键别名
+	 
+	 回车 enter
+	 删除 delete(删除和退格)
+	 退出 esc
+	 空格 space
+	 换行 tab
+	 上 up
+	 下 down
+	 左 left
+	 右 right
+	 
+	 2 vue 为提交的别名  可以是原始的别名绑定 但注意 转为 kebab-case(短横线命名)
+	 
+	 3 vue.config.keycodes 自定义键码 =键名
+	 
+	 -->
+	<body>
+		<div id="root">
+			<h1>{{name1}}</h1>
+			<!-- 			<input type="text" placeholder="按下回车输入"  @keyup.enter="showInfo" />
+ -->
+
+			<input type="text" placeholder="按下回车输入" @keyup.enter="showInfo" />
+
+			<!-- <input type="text" placeholder="按下回车输入" @keyup.testt="showInfo" /> -->
+
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		
+		Vue.config.keyCodes.testt = 13 //定义一个别名
+		// 普通绑定方式
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				name1: 'baidu',
+				name2: 'google'
+			},
+			methods: {
+				showInfo(e) {
+					// e.preventDefault(); // 阻止跳转
+					alert(111)
+
+				}
+			}
+		})
+	</script>
+</html>

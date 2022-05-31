@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./js/vue.js"></script>
+
+	</head>
+
+<style type="text/css">	
+	*{
+		margin-top: 20px;
+	}
+	.demo{
+		background-color: skyblue;
+		height: 50px;
+	}
+</style>
+	<div id="root">
+		
+		<!-- 
+		1 prvent : 阻止默认事件 （c常用）
+		2 stop : 阻止事件冒泡（常用）
+		3 once: 事件值重发一次 （常用）
+		4 capture 使用时间的捕获模式
+		5 self 只有event.target是当前操作的元素是触发事件
+		6 passive 事件是默认立即执行 无需等待
+		 
+		 -->
+		<h1>{{name1}}</h1>
+		<a href="http://www.baidu.com" @click.prevent="showInfo">点击跳转</a>
+		
+		<h1>{{name2}}</h1>
+		
+		<div class="demo" @click="showInfo">
+			<!-- <button type="button" @click="showInfo">点我弹出</button> -->
+			<button type="button" @click.stop="showInfo">阻止冒泡</button>
+		</div>
+		
+		<!-- 事件只触发一次 -->
+		<button type="button" @click.once="showInfo">事件只触发一次</button>
+		
+		
+	</div>
+	<body>
+	</body>
+	<script type="text/javascript">
+		// 普通绑定方式
+			const vm = new  Vue({
+				el:'#root',
+				data:{
+					name1:'baidu',
+					name2:'google'
+				},
+				methods:{
+					showInfo(e){
+						// e.preventDefault(); // 阻止跳转
+						alert(111)
+						
+					}
+				}
+			})
+	</script>
+</html>
