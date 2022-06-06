@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="../js/vue.js"></script>
+		
+	</head>
+	<body>
+		<h1>不积跬步,无以至千里.</h1>
+		<!-- 准备一个容器 -->
+		<div id="root">
+			
+			
+			筛选内容：
+			<input type="text" placeholder="请输入名字" v-model="keyWord" /><br>
+			
+			<button @click="sort_type =0">恢复初始</button>
+			<button @click="sort_type =1">倒叙</button>
+			<button @click="sort_type =2">顺叙</button>
+			<ul>
+				<li v-for="(p,index) in fillPersons">
+					{{p.name}}-{{p.age}}-{{p.sex}}
+				</li>
+			</ul>
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		// 普通绑定方式
+			const vm = new  Vue({
+				el:'#root',
+				data:{
+					keyWord:'',
+					sort_type:0,
+					persons:[
+						{id:'001',name:'马冬梅',age:19,sex:'女'},
+						{id:'002',name:'周冬雨',age:20,sex:'女'},
+						{id:'003',name:'周杰伦',age:21,sex:'男'},
+						{id:'004',name:'温兆伦',age:22,sex:'男'}
+					]
+				},
+				computed: {
+					fillPersons() {
+						const arr =  this.persons.filter((p)=>{
+							return p.name.indexOf(this.keyWord) !== -1
+						})
+						if(this.sort_type){
+							arr.sort((p1,p2)=>{
+								return this.sort_type === 1 ? p2.age-p1.age : p1.age-p2.age
+							})
+							
+						}
+						return arr
+					}
+				},
+			})
+	</script>
+</html>

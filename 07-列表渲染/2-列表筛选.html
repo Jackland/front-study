@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="../js/vue.js"></script>
+		
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="root">
+			筛选内容：
+			<input type="text" placeholder="请输入名字" v-model="keyWord" />
+			<ul>
+				<li v-for="(item,index) in filPerons" :key='index'>
+					{{item.name}}
+				</li>
+			</ul>
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		// 普通绑定方式
+	// 		const vm = new  Vue({
+	// 			el:'#root',
+	// 			data:{
+	// 				name:'不积跬步,无以至千里.',
+	// 				persons:[
+	// 						{id:'001',name:'马冬梅',age:19,sex:'女'},
+	// 						{id:'002',name:'周冬雨',age:20,sex:'女'},
+	// 						{id:'003',name:'周杰伦',age:21,sex:'男'},
+	// 						{id:'004',name:'温兆伦',age:22,sex:'男'}
+	// 					],
+	// 				keyWord:'',
+	// 				filPerons:[]
+	// 			},
+				
+	// 			//  监听者使用
+	// 			watch: {
+	// 				keyWord:{
+	// 					immediate:true,// 初始化数据
+	// 					handler(val){
+	// 						this.filPerons = this.persons.filter((p)=>{
+	// 							return p.name.indexOf(val) !== -1
+	// 						})
+	// 					}
+	// 				}
+	// 			}
+	// 		})
+	
+	
+	//用computed实现
+				new Vue({
+					el:'#root',
+					data:{
+						// name:'不积跬步,无以至千里.',
+						keyWord:'',
+						persons:[
+							{id:'001',name:'马冬梅',age:19,sex:'女'},
+							{id:'002',name:'周冬雨',age:20,sex:'女'},
+							{id:'003',name:'周杰伦',age:21,sex:'男'},
+							{id:'004',name:'温兆伦',age:22,sex:'男'}
+						]
+					},
+					computed:{
+						filPerons(){
+							return this.persons.filter((p)=>{
+								return p.name.indexOf(this.keyWord) !== -1
+							})
+						}
+					}
+				}) 
+	
+	
+	</script>
+</html>

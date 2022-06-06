@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="../js/vue.js"></script>
+
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="root">
+			<h1>{{name}}</h1>
+
+			<button @click='n ++' type="button">点击加：{{n}}</button>
+			<p v-show='1===1'> 显示这个字段</p><br>
+
+			<p v-if='n==2'>显示</p>
+			<p v-else='1==1'>显示3</p>
+
+			<!--v-if与template的配合使用 -->
+			<template v-if="n === 3">
+				<h2>你好</h2>
+				<h2>尚硅谷</h2>
+				<h2>北京</h2>
+			</template>
+
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		// 普通绑定方式
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				name: '不积跬步,无以至千里.',
+				n: 1
+			},
+			methods: {
+				showInfo(e) {
+					// e.preventDefault(); // 阻止跳转
+					console.log(123);
+
+				}
+			}
+		})
+	</script>
+</html>

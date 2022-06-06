@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="../js/vue.js"></script>
+
+	</head>
+	<body>
+
+		<!-- 准备一个容器 -->
+		<div id="root">
+			<h1>{{name1}}</h1>
+			姓名：<input type="text" v-model:value="firstName" /><br>
+			年龄：<input type="text" v-model:value="lastName" /><br>
+			全名：{{fullName}}<br>
+			<!-- 全名：{{firstName.slice(3)}}-{{lastName}} -->
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		// 普通绑定方式
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				name1: '努力，奋斗，',
+				firstName: '周',
+				lastName: '杰伦',
+				fullName: '周-杰伦'
+			},
+			watch: {
+				firstName(newValue) {
+					setTimeout(()=>{
+						console.log('延缓一秒');
+						this.fullName = newValue + '-' + this.lastName
+					}, 1000)
+				},
+				lastName(newValue) {
+					this.fullName = this.firstName + '-' + newValue
+
+				}
+			},
+		})
+	</script>
+</html>

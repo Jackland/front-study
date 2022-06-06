@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="../js/vue.js"></script>
+
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="root">
+			<h1>{{name}}</h1>
+			<hr>
+			<ul>
+				<li v-for="(item,index) in data" :key='item.idcard'>
+					{{item.name}}-{{index}}
+				</li>
+
+				<!-- 遍历对象 -->
+				<li v-for="(item,index) in test" :key='index'>
+					{{item}}-{{index}}
+				</li>
+			</ul>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		// 普通绑定方式
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				name: '不积跬步,无以至千里.',
+				data: [{
+						id: 1,
+						name: 'jack',
+						idcard: 111
+					},
+					{
+						id: 2,
+						name: 'tom',
+						idcard: 333
+					},
+				],
+				test: {
+					car: 'aodi',
+					color: 'red'
+				}
+			},
+			methods: {
+				showInfo(e) {
+					// e.preventDefault(); // 阻止跳转
+					console.log(123);
+
+				}
+			}
+		})
+	</script>
+</html>
