@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		input{
+			background-color: burlywood;
+		}
+	</style>
+	<body>
+		<button id="btn">创建一个button</button>
+	</body>
+	<script>
+		const btn = document.getElementById('btn')
+
+		btn.onclick = function() {
+			const input = document.createElement('input')
+			input.name = 'demo'
+			input.value = 99
+			
+			// function() {} 的简写方式
+			input.onclick = ()=>{
+				alert(1111)
+			}
+
+			document.body.appendChild(input)
+
+			input.focus()
+			// input.parentElement.style.backgroundColor = 'skyblue'
+			console.log(input.parentElement)
+
+		};
+		// })
+	</script>
+</html>

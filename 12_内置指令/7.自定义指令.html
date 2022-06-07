@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="../js/vue.js"></script>
+
+	</head>
+	<body>
+		<h1>不积跬步,无以至千里.</h1>
+		<hr>
+		<!-- 准备一个容器 -->
+		<div id="root">
+			<p>{{name}}</p>
+			初始化值：<span v-text="n"></span><br />
+			放大10倍的值：<span v-big="n"></span><br />
+
+			<button @click="n++"> 点击加1</button><br />
+
+			绑定的值：<input type="text" v-findv:value="n">
+
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		// 普通绑定方式
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				name: 'hello baidu',
+				n: 5
+			},
+			methods: {
+				showInfo(e) {
+					// e.preventDefault(); // 阻止跳转
+					console.log(123);
+
+				},
+			},
+			directives: {
+				big(element, binding) {
+					console.log('big', this) //注意此处的this是window
+					// console.log('big')
+					element.innerText = binding.value * 10
+				},
+				findv:{
+					//指令与元素成功绑定时（一上来）
+					bind(element, binding) {
+							element.value = binding.value
+						},
+						//指令所在元素被插入页面时
+						inserted(element, binding) {
+							element.focus()
+						},
+						//指令所在的模板被重新解析时
+						update(element, binding) {
+							element.value = binding.value
+						}
+				}
+			},
+		})
+	</script>
+</html>

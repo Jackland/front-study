@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="../js/vue.js"></script>
+		<script src="../js/dayjs.min.js"></script>
+
+	</head>
+	<body>
+		<h1>不积跬步,无以至千里.</h1>
+		<hr>
+		<!-- 准备一个容器 -->
+		<div id="root">
+			<p>时间：{{fmtTime}}</p>
+
+			<p>过滤器实现的时间：{{time|timeFormater}}</p>
+
+			<p>methods实现的方法：{{fulltime()}}</p>
+
+			<p>过滤器实现传参：{{time | timeFormater('YYYY_MM_DD') | mySlice}}</p>
+
+			<p :x='msg | mySlice'>全局过滤器：</p>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		//全局过滤器
+		Vue.filter('mySlice', function(value) {
+			return value.slice(0, 4)
+		})
+
+		// 普通绑定方式
+		const vm = new Vue({
+			el: '#root',
+			data: {
+				time: 1621561377603,
+				msg: 'hello,baodiu'
+			},
+			computed: {
+				fmtTime() {
+					return dayjs(this.time).format('YYYY年MM月DD日 HH:mm:ss')
+				}
+			},
+			methods: {
+				fulltime(e) {
+					// e.preventDefault(); // 阻止跳转
+					return dayjs(this.time).format('YYYY年MM月DD日 HH:mm:ss')
+				}
+			},
+			//局部过滤器
+			filters: {
+				timeFormater(value, str = 'YYYY年MM月DD日 HH:mm:ss') {
+					// console.log('@',value)
+					return dayjs(value).format(str)
+				}
+			}
+		})
+	</script>
+</html>
