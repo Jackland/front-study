@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script src="../js/vue.js"></script>
+
+</head>
+
+<body>
+	<h1>不积跬步,无以至千里.</h1>
+	<hr>
+	<!-- 准备一个容器 -->
+	<div id="root">
+		<student></student>
+		<hello></hello>
+	</div>
+
+	<div id="root2">
+		<hello></hello>
+	</div>
+
+</body>
+<script type="text/javascript">
+	Vue.config.productionTip = false
+
+
+	// 注册简单的组件
+	const student = Vue.extend({
+		template: `
+				<div>
+					<p>{{name}}</p>
+					<p>{{age}}</p>
+				</div>
+				`,
+		data() {
+			return {
+				name: 'jack',
+				age: 18
+			}
+		}
+	});
+
+	// 定义hello 组件
+
+	const hello = Vue.extend({
+		template: `
+		<h1>{{hello}}</h1>
+		`,
+		data() {
+			return {
+				hello: 'hello, vue'
+			}
+		}
+	})
+
+
+
+	//全局注册组件的
+	Vue.component('hello', hello)
+
+	// 普通绑定方式
+	const vm = new Vue({
+		el: '#root',
+		data: {
+
+		},
+		components: {
+			student: student,
+			// hello // 可以简写 值和 value 一样的时候
+		},
+		methods: {
+			showInfo(e) {
+				// e.preventDefault(); // 阻止跳转
+				console.log(123);
+
+			}
+		}
+	})
+
+	new Vue({
+		el: '#root2',
+	})
+
+</script>
+
+</html>
