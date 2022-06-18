@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script src="../js/vue.js"></script>
+
+</head>
+
+<body>
+	<h1>不积跬步,无以至千里.</h1>
+	<hr>
+	<!-- 准备一个容器 -->
+	<div id="root">
+		<school></school>
+	</div>
+
+</body>
+<script type="text/javascript">
+	Vue.config.productionTip = false
+
+	// 注册简单的组件
+	const student = Vue.extend({
+		name: 'student',
+		template: `
+				<div>
+					<p>{{name}}</p>
+					<p>{{age}}</p>
+				</div>
+				`,
+		data() {
+			return {
+				name: 'jack',
+				age: 18
+			}
+		}
+	});
+
+	const school = Vue.extend({
+		name: 'school',
+		template: `<div>
+					<p>{{name}}</p>
+					<p>{{age}}</p>
+				</div>`,
+		data() {
+			return {
+				name: '淮滨高中',
+				age: 60
+			}
+		},
+		components: {
+			student: student
+		}
+	});
+
+	const hello = Vue.extend({
+
+		template: `
+		<h1>{{name}}</h1>
+		`,
+		data() {
+			return {
+				name: 'hello huaibin'
+			}
+		}
+	});
+
+	//定义app组件
+	const app = Vue.extend({
+		template: `
+				<div>	
+					<hello></hello>
+					<school></school>
+					<student></student>
+				</div>
+			`,
+		components: {
+			school,
+			student,
+			hello
+		}
+	})
+
+
+	// 普通绑定方式
+	const vm = new Vue({
+		template: '<app></app>',
+		el: '#root',
+		components: {
+			app:app
+		}
+	})
+</script>
+
+</html>
